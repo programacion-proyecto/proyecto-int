@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <h1>
-        programacion
+        Who is in paris? 2+1 6 or 7... 67
       </h1>
 
     </>
