@@ -1,24 +1,22 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { Routes, Route, Navigate } from "react-router-dom";
+import { AuthGate } from "@/components/AuthGate";
+import Index from "@/routes/index";
+import VentasPage from "@/routes/ventas";
+import ComprasPage from "@/routes/compras";
+import StockPage from "@/routes/stock";
+import RevisionPage from "@/routes/revision";
 
-function App() {
-  const [count, setCount] = useState(0)
-  useEffect (()=>{
-    fetch('http://localhost:8000/api/hola')
-      .then(r=>r.json())
-      .then(d=>setMsg(d.mensaje));
-  }, []);
+export default function App() {
   return (
-    <>
-      <h1>
-        Who is in paris? 2+1 6 or 7... 67
-      </h1>
-
-    </>
-  )
+    <AuthGate>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/ventas" element={<VentasPage />} />
+        <Route path="/compras" element={<ComprasPage />} />
+        <Route path="/stock" element={<StockPage />} />
+        <Route path="/revision" element={<RevisionPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </AuthGate>
+  );
 }
-
-export default App;
